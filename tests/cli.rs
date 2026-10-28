@@ -27,6 +27,7 @@ fn parses_update_dry_run() {
 fn parses_list_and_version() {
     assert_eq!(parse_args(["list"]).unwrap(), Command::List);
     assert_eq!(parse_args(["version"]).unwrap(), Command::Version);
+    assert_eq!(parse_args(["self-update"]).unwrap(), Command::SelfUpdate);
 }
 
 #[test]
@@ -34,4 +35,5 @@ fn rejects_unknown_and_extra_arguments() {
     assert!(parse_args(["wat"]).is_err());
     assert!(parse_args(["list", "extra"]).is_err());
     assert!(parse_args(["init", "--here", "/tmp/project"]).is_err());
+    assert!(parse_args(["self-update", "extra"]).is_err());
 }

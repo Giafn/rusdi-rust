@@ -7,6 +7,7 @@ pub enum Command {
     List,
     Init { target: PathBuf },
     Update { target: PathBuf, dry_run: bool },
+    SelfUpdate,
     Version,
 }
 
@@ -27,6 +28,7 @@ where
     match command {
         "list" if args.len() == 1 => Ok(Command::List),
         "version" if args.len() == 1 => Ok(Command::Version),
+        "self-update" if args.len() == 1 => Ok(Command::SelfUpdate),
         "init" => parse_init(&args[1..]),
         "update" => parse_update(&args[1..]),
         _ => Err(usage()),
@@ -79,5 +81,6 @@ fn parse_update(args: &[OsString]) -> Result<Command, String> {
 }
 
 fn usage() -> String {
-    "usage: rudis-lite <list|init|update|version> [--here|--dry-run] [PROJECT_DIR]".into()
+    "usage: rudis-lite <list|init|update|self-update|version> [--here|--dry-run] [PROJECT_DIR]"
+        .into()
 }

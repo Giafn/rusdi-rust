@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Added Linux and Windows installers, tagged GitHub Release builds, checksums, and the
+  `rudis-lite self-update` command.
+
 ## 0.1.0 - 2026-10-28
 
 - Initial Rust CLI for installing Claude Code slash commands.

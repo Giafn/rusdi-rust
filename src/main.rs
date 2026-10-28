@@ -1,5 +1,6 @@
 use rudis_lite::cli::{parse_args, Command};
 use rudis_lite::installer;
+use rudis_lite::self_update;
 use rudis_lite::templates;
 
 fn main() {
@@ -21,6 +22,17 @@ fn run() -> Result<(), String> {
             env!("CARGO_PKG_VERSION"),
             templates::UPSTREAM_REVISION
         ),
+        Command::SelfUpdate => {
+            let result = self_update::run().map_err(|e| e.to_string())?;
+            if result.changed {
+                println!(
+                    "updated rudis-lite {} -> {}",
+                    result.old_version, result.new_version
+                );
+            } else {
+                println!("rudis-lite {} is already current", result.old_version);
+            }
+        }
         Command::Init { target } => {
             print_report(installer::init(&target).map_err(|e| e.to_string())?)
         }

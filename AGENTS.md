@@ -68,3 +68,16 @@ header. Do not silently change command semantics while syncing.
 Generated files begin with the exact marker exposed by `templates::OWNERSHIP_MARKER`.
 `init` and `update` may write only missing files or files beginning with that marker.
 User-created files without the marker must be preserved.
+
+## Release rules
+
+- Publish only from a `v*` tag with a matching changelog entry.
+- Keep the target matrix and asset names synchronized across `src/platform.rs`,
+  `install.sh`, `install.ps1`, and `.github/workflows/release.yml`.
+- Every release must include all three binaries and `SHA256SUMS`.
+- Verify release assets and checksums after a tagged workflow completes.
+- Never make `update` perform a binary self-update; use `self-update`.
+- When asset names or installation behavior changes, update `README.md` and both
+  installers together.
+- Distribution tests must use local fixtures or injected boundaries, never GitHub
+  availability.
