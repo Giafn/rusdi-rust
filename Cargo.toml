@@ -1,0 +1,16 @@
+[package]
+name = "rudis-lite"
+version = "0.1.0"
+edition = "2021"
+description = "Slim Claude Code slash-command installer for Rudis templates"
+license = "MIT"
+
+[lib]
+name = "rudis_lite"
+path = "src/lib.rs"
+
+[[bin]]
+name = "rudis-lite"
+path = "src/main.rs"
+
+[dependencies]
