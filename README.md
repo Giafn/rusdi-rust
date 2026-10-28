@@ -124,3 +124,8 @@ git push origin v0.2.0
 GitHub Actions builds the Linux x86_64, Linux ARM64, and Windows x86_64 binaries and
 publishes them with `SHA256SUMS`. The workflow must finish before `install.sh`,
 `install.ps1`, or `self-update` can use that release.
+
+Every push or merge to `main` also runs the `Build main artifacts` workflow. It builds
+the same three platforms and uploads temporary GitHub Actions Artifacts for testing;
+these are not stable releases and are retained for 14 days. Stable downloads and
+`self-update` continue to use only tagged `v*` releases.
