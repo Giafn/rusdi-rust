@@ -81,5 +81,5 @@ User-created files without the marker must be preserved.
   installers together.
 - Distribution tests must use local fixtures or injected boundaries, never GitHub
   availability.
-- The `Build main artifacts` workflow is for merge validation only; do not make
-  `self-update` consume its temporary artifacts.
+- The `Release main build` workflow is for merge validation only; do not make
+  `self-update` consume its `main-latest` prerelease artifacts.

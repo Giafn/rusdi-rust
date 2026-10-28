@@ -125,7 +125,8 @@ GitHub Actions builds the Linux x86_64, Linux ARM64, and Windows x86_64 binaries
 publishes them with `SHA256SUMS`. The workflow must finish before `install.sh`,
 `install.ps1`, or `self-update` can use that release.
 
-Every push or merge to `main` also runs the `Build main artifacts` workflow. It builds
-the same three platforms and uploads temporary GitHub Actions Artifacts for testing;
-these are not stable releases and are retained for 14 days. Stable downloads and
-`self-update` continue to use only tagged `v*` releases.
+Every push or merge to `main` also runs the `Release main build` workflow. It stages the
+same three platforms in a runner `build/` folder, uploads build artifacts, and updates
+the rolling `main-latest` GitHub prerelease with the binaries and `SHA256SUMS`. This is
+for testing only; stable downloads and `self-update` continue to use only tagged `v*`
+releases.
